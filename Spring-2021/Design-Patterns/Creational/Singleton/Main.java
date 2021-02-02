@@ -1,3 +1,5 @@
+package Singleton
+
 public class Main{
     public static void main(String[] args){
         // Ecounter counter1 = new ECounter();  // This will not work because the constructor is private

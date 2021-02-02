@@ -1,3 +1,5 @@
+package Singleton
+
 public class ECounter{
     private int index;
 
