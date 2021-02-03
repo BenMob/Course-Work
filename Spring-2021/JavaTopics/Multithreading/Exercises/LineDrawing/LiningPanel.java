@@ -6,46 +6,74 @@ import javax.swing.JButton;
 import javax.swing.BorderFactory;
 
 public class LiningPanel extends javax.swing.JPanel {
-    private Color[] colors = new Color[]{ Color.BLACK, Color.BLUE, Color.CYAN, Color.DARK_GRAY, Color.GRAY, Color.GREEN, Color.MAGENTA, Color.ORANGE, Color.PINK, Color.RED, Color.YELLOW };
+    private double maximumLines = 100.0;
+    private double lineCounter = 1.0;
+    private boolean paused = false;
 
+    /**
+     * Constructor
+     */
     public LiningPanel() {
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        this.setBackground(Color.BLACK);
     }
 
-    // Generates random color.
+    /**
+     * Generaretes a random color.
+     * @return A Color object
+     */
     private Color generateRandomColor(){
-        double colorPosition = Math.random() * this.colors.length;
-        return colors[(int)colorPosition];
+        final int R = (int)(Math.random() * 255);
+        final int G = (int)(Math.random() * 255);
+        final int B = (int)(Math.random() * 255);
+
+        return new Color(R,G,B);
     }
 
-    // Draws a randomly colored line.
-    private Graphics drawColoredLine(Graphics g, int x1, int y1, int x2, int y2){
-        Color color =this.generateRandomColor();
-        g.setColor(color);
-        g.drawLine(x1, y1, x2, y2);
-        return g;
-    }
-
-    // Draws the whole art piece.
-    private void drawArtPiece(Graphics g, double lines){
+    /**
+     * Deaws the squares one after the other.
+     * @param g
+     */
+    private void drawArtPiece(Graphics g){
         int width = getWidth();
         int height = getHeight();
 
-        for(int i = 0; i < lines; i ++){
-            int x = (int)((i/lines) * width);
-            int y = (int)((i/lines) * height);
+        for(int i = 0; i < this.lineCounter; i ++){
+            int x = (int)((i/this.maximumLines) * width);
+            int y = (int)((i/this.maximumLines) * height);
 
-            this.drawColoredLine(g,0, y, x, height);                       // Left to Bottom
-            this.drawColoredLine(g, x, height, width, height - y);         // Bottom to Right
-            this.drawColoredLine(g, width, y, x, 0);                       // Right to Top
-            this.drawColoredLine(g,width - x, 0, 0, y);             // Top to Left
+            g.setColor(this.generateRandomColor());
+            g.drawLine(x, height, width, height - y);
+
+            g.setColor(this.generateRandomColor());
+            g.drawLine(width, height-y, width - x, 0);
+
+            g.setColor(this.generateRandomColor());
+            g.drawLine(width - x, 0, 0, y);
+
+            g.setColor(this.generateRandomColor());
+            g.drawLine(0, y, x, height);
         }
     }
 
+    /**
+     * Increments the counter, unless it has reached its maximum
+     * otherwise it sets it to 1.
+     */
+    public void updateCounter(){
+        if(this.lineCounter == this.maximumLines){
+            this.lineCounter = 1.00;
+        }else{
+            this.lineCounter ++;
+        }
+    }
+
+    /**
+     * Painst the component.
+     * @param g
+     */
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-        final double lines = 15.0;
-        this.drawArtPiece(g, lines);
+        this.drawArtPiece(g);
     }
-    
 }

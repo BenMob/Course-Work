@@ -1,13 +1,14 @@
 package LineDrawing;
 import javax.swing.JButton;
 import java.awt.event.*;
+import java.awt.Color;
 
-public class CommandPanel extends javax.swing.JPanel implements ActionListener{
+class CommandPanel extends javax.swing.JPanel implements ActionListener{
     private final String PAUSE = "PAUSE";
     private final String RESUME = "RESUME";
     private Animator animator = null;
     private JButton button = null;
-    private boolean animationIsStopped = false;
+    private boolean animationIsPaused = false;
 
     /**
      * Constructor
@@ -29,15 +30,21 @@ public class CommandPanel extends javax.swing.JPanel implements ActionListener{
     }
 
     /**
-     * Toggles the button between RESUME and STOP
+     * Toggles the button between RESUME and PAUSE
+     * depending on the state of this.animationIsStopped
      */
     private void toggleButton(){
-        if(this.animationIsStopped){
+        if(this.animationIsPaused){
             this.button.setText(this.RESUME);
+            animator.setIsPaused(true);
+            this.setBackground(Color.BLACK);
         }else{
             this.button.setText(this.PAUSE);
+            animator.setIsPaused(false);
+            this.setBackground(Color.WHITE);
         }
-        this.animationIsStopped = !this.animationIsStopped;
+
+        this.animationIsPaused = !this.animationIsPaused;
     }
 
     /**
@@ -45,6 +52,6 @@ public class CommandPanel extends javax.swing.JPanel implements ActionListener{
      */
     @Override
     public void actionPerformed(ActionEvent e){
-        this.toggleButton();;
+        this.toggleButton();
     }
 }
