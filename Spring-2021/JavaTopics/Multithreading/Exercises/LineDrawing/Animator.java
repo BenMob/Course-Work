@@ -28,7 +28,7 @@ class Animator implements Runnable{
     public void run(){
         while(true){
             if(!isPaused){ this.animate(); }
-            try{ Thread.sleep(300); }catch(Exception e){};
+            try{ Thread.sleep(200); }catch(Exception e){};
         }
     }
 
