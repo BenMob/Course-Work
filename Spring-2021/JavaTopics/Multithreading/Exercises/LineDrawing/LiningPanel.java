@@ -6,7 +6,7 @@ import javax.swing.JButton;
 import javax.swing.BorderFactory;
 
 public class LiningPanel extends javax.swing.JPanel {
-    private double maximumLines = 100.0;
+    private double maximumLines = 20.0;
     private double lineCounter = 1.0;
     private boolean paused = false;
 
@@ -15,7 +15,6 @@ public class LiningPanel extends javax.swing.JPanel {
      */
     public LiningPanel() {
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        this.setBackground(Color.BLACK);
     }
 
     /**

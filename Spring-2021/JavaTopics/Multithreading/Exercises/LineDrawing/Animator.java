@@ -1,6 +1,7 @@
 package LineDrawing;
 
 import java.awt.Color;
+import javax.swing.BorderFactory;
 
 class Animator implements Runnable{
     private LiningPanel liningPanel = null;
@@ -28,7 +29,7 @@ class Animator implements Runnable{
     public void run(){
         while(true){
             if(!isPaused){ this.animate(); }
-            try{ Thread.sleep(200); }catch(Exception e){};
+            try{ Thread.sleep(300); }catch(Exception e){};
         }
     }
 
@@ -40,8 +41,10 @@ class Animator implements Runnable{
         this.isPaused = state;
         if(this.isPaused){
             this.liningPanel.setBackground(Color.BLACK);
+            this.liningPanel.setBorder(BorderFactory.createLineBorder(Color.WHITE));
         }else{
             this.liningPanel.setBackground(Color.WHITE);
+            this.liningPanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         }
     }
 }
