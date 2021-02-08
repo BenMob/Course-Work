@@ -1,0 +1,3 @@
+package MarkerInterface;
+
+interface Writer{}

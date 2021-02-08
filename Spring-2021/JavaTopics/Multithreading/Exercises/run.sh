@@ -1,4 +1,5 @@
 #!/bin/sh
-javac LineDrawing/*.java
-java LineDrawing.Application
+javac DesignToCode/*.java
+java DesignToCode.Application
+rm DesignToCode/*.class
 
