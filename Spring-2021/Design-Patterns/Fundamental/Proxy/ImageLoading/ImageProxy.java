@@ -1,4 +1,4 @@
-package Proxy;
+package ImageLoading;
 
 
 public class ImageProxy implements Image{

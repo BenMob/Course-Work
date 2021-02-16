@@ -1,4 +1,4 @@
-package Proxy;
+package ImageLoading;
 
 public class RealImage implements Image{
     private String fileName;
