@@ -15,14 +15,14 @@ public class EnemyShipTesting{
         // doStuffEnemy(ufoEnenmyShip);
         /**
          * Problem: This is not dynamic
-         * we would need to use a buch of if statements to make it
+         * we would need to use a bunch of if statements to make it
          * dynamic but we do not want that either.
          *
          * So let's use Factory Method to make it dynamic without using if statements.
          */
-        EnemyShipFactory shipFactory = new EnemyShipFactory();  // The Ship Factry
+        EnemyShipFactory shipFactory = new EnemyShipFactory();  // The Ship Factory
         Scanner input = new Scanner(System.in);
-        System.out.print("WHat type of Ship ? (U / R / B): ");
+        System.out.print("What type of Ship ? (U / R / B): ");
         EnemyShip theEnemy = null;
 
         if(input.hasNextLine()){
