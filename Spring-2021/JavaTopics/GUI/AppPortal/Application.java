@@ -1,4 +1,4 @@
-package GUI;
+package AppPortal;
 
 public class Application{
     public static void main(String[] args){
